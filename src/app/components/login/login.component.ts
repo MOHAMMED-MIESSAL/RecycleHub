@@ -3,7 +3,6 @@ import {Router} from '@angular/router';
 import {AuthService} from '../../services/auth.service';
 import {FormsModule} from "@angular/forms";
 import {CommonModule} from '@angular/common';
-import {UserService} from "../../services/user.service";
 
 
 @Component({
@@ -21,19 +20,18 @@ export class LoginComponent implements OnInit {
   password = '';
   errorMessage = '';
 
-  constructor(private authService: AuthService, private userService: UserService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router) {
   }
 
-  ngOnInit() {
-    this.userService.loadUsers();
-    this.userService.initializeCollectors();
-    this.authService.isLoggedIn() && this.router.navigate(['/home']); // If the user is already logged in, redirect to home
+  ngOnInit(): void {
+    if (this.authService.isLoggedIn()) {
+      this.router.navigate(['/home']);
+    }
   }
 
   login() {
     this.authService.login(this.email, this.password).subscribe(user => {
       if (user) {
-        console.log('Connexion réussie', user);
         this.router.navigate(['/home']);
       } else {
         this.errorMessage = 'Email ou mot de passe incorrect';
