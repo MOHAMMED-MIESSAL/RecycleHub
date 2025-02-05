@@ -1,0 +1,18 @@
+<form (ngSubmit)="onSubmit()">
+  <input [(ngModel)]="user.email" name="email" placeholder="Email" required>
+  <input [(ngModel)]="user.password" name="password" type="password" placeholder="Mot de passe" required>
+  <input [(ngModel)]="user.firstName" name="firstName" placeholder="Prénom" required>
+  <input [(ngModel)]="user.lastName" name="lastName" placeholder="Nom" required>
+  <input [(ngModel)]="user.address" name="address" placeholder="Adresse" required>
+  <input [(ngModel)]="user.phoneNumber" name="phoneNumber" placeholder="Téléphone" required>
+  <input [(ngModel)]="user.dateOfBirth" name="dateOfBirth" type="date" placeholder="Date de naissance" required>
+  <button type="submit">S'inscrire</button>
+</form>
+
+<h2>Liste des utilisateurs</h2>
+<ul>
+  <li *ngFor="let user of users">
+    {{ user.firstName }} {{ user.lastName }} - {{ user.email }}
+    <button (click)="deleteUser(user.id)">Supprimer</button>
+  </li>
+</ul>
