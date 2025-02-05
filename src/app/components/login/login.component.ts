@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.authService.login(this.email, this.password).subscribe(user => {
       if (user) {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/request/add']);
       } else {
         this.errorMessage = 'Email ou mot de passe incorrect';
       }
