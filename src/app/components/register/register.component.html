@@ -8,11 +8,3 @@
   <input [(ngModel)]="user.dateOfBirth" name="dateOfBirth" type="date" placeholder="Date de naissance" required>
   <button type="submit">S'inscrire</button>
 </form>
-
-<h2>Liste des utilisateurs</h2>
-<ul>
-  <li *ngFor="let user of users">
-    {{ user.firstName }} {{ user.lastName }} - {{ user.email }}
-    <button (click)="deleteUser(user.id)">Supprimer</button>
-  </li>
-</ul>

@@ -1,42 +1,39 @@
-import {Injectable} from '@angular/core';
-import {UserService} from './user.service';
-import {User} from '../models/user.model';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { User } from '../models/user.model';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private userService: UserService) {
-  }
+  private apiUrl = 'http://localhost:3000/users';
+
+  constructor(private http: HttpClient) {}
 
   // Login function
-  login(email: string, password: string): Observable<User | undefined> {
-    return this.userService.getUsers().pipe(
-      map((users: User[]) => {
-        const user = users.find(u => u.email === email && u.password === password);
+  login(email: string, password: string): Observable<User | null> {
+    return this.http.get<User[]>(this.apiUrl).pipe(
+      map(users => {
+        const user = users.find((u: User) => u.email === email && u.password === password);
         if (user) {
-          localStorage.setItem('currentUser', JSON.stringify(user)); // Save the current user in local storage
+          localStorage.setItem('loggedInUser', JSON.stringify(user));
+          return user;
         }
-        return user;
+        return null;
       })
     );
   }
 
   // Logout function
   logout(): void {
-    localStorage.removeItem('currentUser'); // Supprimer l'utilisateur connecté
-  }
-
-  // Register function
-  register(user: User): Observable<User> {
-    return this.userService.addUser(user);
+    localStorage.removeItem('loggedInUser'); // Supprimer l'utilisateur connecté
   }
 
   // Check if the user is logged in
   isLoggedIn(): boolean {
-    return !!localStorage.getItem('currentUser'); // Return true if the current user exists in local storage
+    return !!localStorage.getItem('loggedInUser'); // Return true if the current user exists in local storage
   }
 }
