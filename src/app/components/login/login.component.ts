@@ -21,12 +21,13 @@ export class LoginComponent implements OnInit {
   password = '';
   errorMessage = '';
 
-  constructor(private authService: AuthService, private userService: UserService, private router: Router ){
+  constructor(private authService: AuthService, private userService: UserService, private router: Router) {
   }
 
   ngOnInit() {
     this.userService.loadUsers();
     this.userService.initializeCollectors();
+    this.authService.isLoggedIn() && this.router.navigate(['/home']); // If the user is already logged in, redirect to home
   }
 
   login() {
