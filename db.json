@@ -1,0 +1,26 @@
+{
+  "users": [
+    {
+      "id": "1738755486608",
+      "email": "masawoteq@mailinator.com",
+      "password": "Pa$$w0rd!",
+      "firstName": "Ezra",
+      "lastName": "Little",
+      "address": "Explicabo Aliqua Q",
+      "phoneNumber": "+1 (919) 484-9917",
+      "dateOfBirth": "2015-08-12",
+      "role": "collecteur"
+    },
+    {
+      "id": 1738789173453,
+      "email": "mohammedmiessal@gmail.com",
+      "password": "password",
+      "firstName": "Mohammed",
+      "lastName": "Miessal",
+      "address": "Casablanca",
+      "phoneNumber": "+1 (757) 368-4886",
+      "dateOfBirth": "2025-02-28",
+      "role": "particulier"
+    }
+  ]
+}
