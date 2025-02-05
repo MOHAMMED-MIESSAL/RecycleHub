@@ -34,4 +34,9 @@ export class AuthService {
   register(user: User): Observable<User> {
     return this.userService.addUser(user);
   }
+
+  // Check if the user is logged in
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('currentUser'); // Return true if the current user exists in local storage
+  }
 }
