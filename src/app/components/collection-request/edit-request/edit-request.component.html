@@ -1,0 +1,44 @@
+<h2>Modifier la demande de collecte</h2>
+
+<form *ngIf="requestForm" [formGroup]="requestForm" (ngSubmit)="updateRequest()">
+
+  <div formArrayName="wasteDetails">
+    <div *ngFor="let waste of wasteDetailsArray?.controls; let i = index" [formGroupName]="i">
+      <label>{{ waste.get('type')?.value }} - Poids (g) :</label>
+      <input type="number" formControlName="weight" (input)="onWeightChange()" required>
+    </div>
+  </div>
+
+
+  <p><strong>Poids total :</strong> {{ totalWeight }} g</p>
+
+  <div>
+    <label>Adresse :</label>
+    <input type="text" formControlName="address" required>
+  </div>
+
+  <div>
+    <label>Date :</label>
+    <input type="date" formControlName="date" required>
+  </div>
+
+  <div>
+    <label>Créneau horaire :</label>
+    <select formControlName="timeSlot" required>
+      <option value="09h00 - 12h00">09h00 - 12h00</option>
+      <option value="12h00 - 15h00">12h00 - 15h00</option>
+      <option value="15h00 - 18h00">15h00 - 18h00</option>
+    </select>
+  </div>
+
+  <div>
+    <label>Notes supplémentaires :</label>
+    <textarea formControlName="notes"></textarea>
+  </div>
+
+  <p *ngIf="weightError" style="color: red;">
+    Le poids total doit être entre 1000g et 10000g.
+  </p>
+
+  <button type="submit" [disabled]="requestForm.invalid || weightError">Enregistrer</button>
+</form>
