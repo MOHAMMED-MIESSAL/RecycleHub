@@ -1,0 +1,17 @@
+<h2>Mes demandes de collecte</h2>
+
+<div *ngIf="requests.length === 0">
+  <p>Aucune demande en cours.</p>
+</div>
+
+<ul>
+  <li *ngFor="let request of requests">
+    <strong>Types:</strong> {{ request.wasteType.join(', ') }}<br>
+    <strong>Poids:</strong> {{ request.estimatedWeight }} g<br>
+    <strong>Adresse:</strong> {{ request.address }}<br>
+    <strong>Date:</strong> {{ request.date }} - {{ request.timeSlot }}<br>
+    <strong>Statut:</strong> <span [ngClass]="{'pending': request.status === 'en attente'}">{{ request.status }}</span>
+
+    <button *ngIf="request.status === 'en attente'" (click)="deleteRequest(request.id)">🗑 Supprimer</button>
+  </li>
+</ul>

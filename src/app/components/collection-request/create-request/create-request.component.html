@@ -1,0 +1,43 @@
+<app-navbar></app-navbar>
+
+<h2>Créer une demande de collecte</h2>
+
+<form [formGroup]="requestForm" (ngSubmit)="addRequest()">
+
+  <label><strong>Types de déchets :</strong></label><br>
+  <label><input type="checkbox" (change)="toggleWasteType('Plastique', $event)"> Plastique</label>
+  <label><input type="checkbox" (change)="toggleWasteType('Verre', $event)"> Verre</label>
+  <label><input type="checkbox" (change)="toggleWasteType('Papier', $event)"> Papier</label>
+  <label><input type="checkbox" (change)="toggleWasteType('Métal', $event)"> Métal</label>
+
+  <div>
+    <label>Poids estimé (g) :</label>
+    <input type="number" formControlName="estimatedWeight" min="1000" required>
+  </div>
+
+  <div>
+    <label>Adresse :</label>
+    <input type="text" formControlName="address" required>
+  </div>
+
+  <div>
+    <label>Date :</label>
+    <input type="date" formControlName="date" required>
+  </div>
+
+  <div>
+    <label>Créneau horaire :</label>
+    <select formControlName="timeSlot" required>
+      <option value="09h00 - 12h00">09h00 - 12h00</option>
+      <option value="12h00 - 15h00">12h00 - 15h00</option>
+      <option value="15h00 - 18h00">15h00 - 18h00</option>
+    </select>
+  </div>
+
+  <div>
+    <label>Notes supplémentaires :</label>
+    <textarea formControlName="notes"></textarea>
+  </div>
+
+  <button type="submit" [disabled]="requestForm.invalid">Soumettre</button>
+</form>

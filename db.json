@@ -12,7 +12,7 @@
       "role": "collecteur"
     },
     {
-      "id": 1738789173453,
+      "id": "1738789173453",
       "email": "mohammedmiessal@gmail.com",
       "password": "password",
       "firstName": "Mohammed",
@@ -21,6 +21,18 @@
       "phoneNumber": "+1 (757) 368-4886",
       "dateOfBirth": "2025-02-28",
       "role": "particulier"
+    },
+    {
+      "id": "1738790687229",
+      "email": "kedosywa@mailinator.com",
+      "password": "Pa$$w0rd!",
+      "firstName": "Walter",
+      "lastName": "Zamora",
+      "address": "Labore velit enim qu",
+      "phoneNumber": "+1 (999) 951-5106",
+      "dateOfBirth": "1978-05-23",
+      "role": "particulier"
     }
-  ]
+  ],
+  "requests": []
 }
