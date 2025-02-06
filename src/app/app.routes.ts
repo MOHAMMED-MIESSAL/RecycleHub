@@ -5,6 +5,7 @@ import {HomeComponent} from "./components/home/home.component";
 import {authGuard} from './guards/auth.guard';
 import {CreateRequestComponent} from './components/collection-request/create-request/create-request.component';
 import {MyRequestComponent} from "./components/collection-request/my-request/my-request.component";
+import {EditRequestComponent} from "./components/collection-request/edit-request/edit-request.component";
 
 export const routes: Routes = [
 
@@ -14,6 +15,7 @@ export const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   { path: 'request/add', component: CreateRequestComponent , canActivate: [authGuard] },
   { path: 'request/my-request', component: MyRequestComponent , canActivate: [authGuard]},
+  {  path: 'request/edit/:id' , component: EditRequestComponent , canActivate: [authGuard]},
   {path: '**', redirectTo: 'login'}
 
 ];

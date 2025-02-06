@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <h2>Mes demandes de collecte</h2>
 
 <div *ngIf="requests.length === 0">
@@ -6,12 +7,25 @@
 
 <ul>
   <li *ngFor="let request of requests">
-    <strong>Types:</strong> {{ request.wasteType.join(', ') }}<br>
-    <strong>Poids:</strong> {{ request.estimatedWeight }} g<br>
-    <strong>Adresse:</strong> {{ request.address }}<br>
-    <strong>Date:</strong> {{ request.date }} - {{ request.timeSlot }}<br>
-    <strong>Statut:</strong> <span [ngClass]="{'pending': request.status === 'en attente'}">{{ request.status }}</span>
+    <h3>{{ request.date | date: 'dd/MM/yyyy' }} - {{ request.timeSlot }}</h3>
+    <p><strong>Adresse :</strong> {{ request.address }}</p>
 
-    <button *ngIf="request.status === 'en attente'" (click)="deleteRequest(request.id)">🗑 Supprimer</button>
+    <p><strong>Déchets :</strong></p>
+    <ul>
+      <li *ngFor="let waste of request.wasteDetails">
+        {{ waste.type }} : {{ waste.weight }} g
+      </li>
+    </ul>
+
+    <p><strong>Poids total :</strong> {{ getTotalWeight(request.wasteDetails) }} g</p>
+
+    <p><strong>Notes :</strong> {{ request.notes }}</p>
+
+    <button *ngIf="request.status === 'en attente'" (click)="deleteRequest(request.id)">
+      Supprimer
+    </button>
+
+    <button *ngIf="request.status === 'en attente'" [routerLink]="['/request/edit', request.id]">✏ Modifier</button>
+
   </li>
 </ul>

@@ -13,8 +13,9 @@ export class CollectionService {
   constructor(private http: HttpClient) {}
 
   addRequest(request: CollectionRequest): Observable<CollectionRequest> {
-    return this.http.post<CollectionRequest>(this.apiUrl, request);
+    return this.http.post<CollectionRequest>('http://localhost:3000/requests', request);
   }
+
 
   getUserRequests(userId: number): Observable<CollectionRequest[]> {
     return this.http.get<CollectionRequest[]>(`${this.apiUrl}?userId=${userId}`);
@@ -26,6 +27,10 @@ export class CollectionService {
 
   deleteRequest(id: number): Observable<{}> {
     return this.http.delete<{}>(`${this.apiUrl}/${id}`);
+  }
+
+  getRequestById(id: number): Observable<CollectionRequest | null> {
+    return this.http.get<CollectionRequest>(`http://localhost:3000/requests/${id}`);
   }
 
   getAllRequests(): Observable<CollectionRequest[]> {

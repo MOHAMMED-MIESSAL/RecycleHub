@@ -1,32 +1,31 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { CollectionService } from '../../../services/collection.service';
-import { CollectionRequest } from '../../../models/collection-request.model';
+import {CommonModule} from '@angular/common';
+import {Component, OnInit} from '@angular/core';
+import {Router, RouterLink} from '@angular/router';
+import {CollectionService} from '../../../services/collection.service';
+import {CollectionRequest} from '../../../models/collection-request.model';
+import {NavbarComponent} from "../../navbar/navbar.component";
 
 @Component({
   standalone: true,
   selector: 'app-my-request',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink, NavbarComponent],
   templateUrl: './my-request.component.html',
   styleUrls: ['./my-request.component.css']
 })
 export class MyRequestComponent implements OnInit {
   requests: CollectionRequest[] = [];
-  userId: number = -1;
+  userId?: number; // User ID from local storage
 
   constructor(
     private collectionService: CollectionService,
     private router: Router
   ) {
-    const user = localStorage.getItem('loggedInUser');
-    if (user) {
-      this.userId = JSON.parse(user).id;
-    }
   }
 
   ngOnInit() {
-    if (this.userId) {
+    const user = localStorage.getItem('loggedInUser');
+    if (user) {
+      this.userId = JSON.parse(user).id;
       this.loadRequests();
     } else {
       this.router.navigate(['/login']);
@@ -34,11 +33,14 @@ export class MyRequestComponent implements OnInit {
   }
 
   loadRequests() {
-
+    if (!this.userId) return;
     this.collectionService.getUserRequests(this.userId).subscribe((requests: CollectionRequest[]) => {
-      console.log(requests);
       this.requests = requests;
     });
+  }
+
+  getTotalWeight(wasteDetails: { type: string; weight: number }[]): number {
+    return wasteDetails.reduce((total, waste) => total + waste.weight, 0);
   }
 
   deleteRequest(id: number) {

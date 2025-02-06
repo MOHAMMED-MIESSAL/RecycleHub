@@ -1,24 +1,23 @@
 import {Component} from '@angular/core';
-import {FormBuilder, FormGroup, Validators, FormArray, ReactiveFormsModule} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators, FormArray} from '@angular/forms';
 import {CollectionService} from '../../../services/collection.service';
 import {Router} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {NavbarComponent} from "../../navbar/navbar.component";
-
+import {ReactiveFormsModule} from '@angular/forms';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-create-request',
   standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    CommonModule,
-    NavbarComponent
-  ],
+  imports: [ReactiveFormsModule, CommonModule, NavbarComponent],
   templateUrl: './create-request.component.html',
-  styleUrl: './create-request.component.css'
+  styleUrls: ['./create-request.component.css']
 })
+
 export class CreateRequestComponent {
   requestForm: FormGroup;
+  weightError = false;
 
   constructor(
     private fb: FormBuilder,
@@ -26,8 +25,7 @@ export class CreateRequestComponent {
     private router: Router
   ) {
     this.requestForm = this.fb.group({
-      wasteType: this.fb.array([], Validators.required),
-      estimatedWeight: [1000, [Validators.required, Validators.min(1000), Validators.max(10000)]],
+      wasteDetails: this.fb.array([]),
       address: ['', Validators.required],
       date: ['', Validators.required],
       timeSlot: ['', Validators.required],
@@ -35,40 +33,63 @@ export class CreateRequestComponent {
     });
   }
 
-
-  // Get wasteTypeArray
-  get wasteTypeArray(): FormArray {
-    return this.requestForm.get('wasteType') as FormArray;
+  getWeightControl(waste: any): FormControl {
+    return waste.get('weight') as FormControl;
   }
 
+  get wasteDetailsArray(): FormArray {
+    return this.requestForm.get('wasteDetails') as FormArray;
+  }
 
-  // Toggle waste type
+  get totalWeight(): number {
+    return this.wasteDetailsArray.controls
+      .map(control => Number(control.get('weight')?.value) || 0)
+      .reduce((acc, val) => acc + val, 0);
+  }
+
   toggleWasteType(type: string, event: Event) {
     const checked = (event.target as HTMLInputElement).checked;
-    if (checked) {
-      this.wasteTypeArray.push(this.fb.control(type));
-    } else {
-      const index = this.wasteTypeArray.controls.findIndex(ctrl => ctrl.value === type);
-      if (index >= 0) {
-        this.wasteTypeArray.removeAt(index);
-      }
+    const index = this.wasteDetailsArray.controls.findIndex(ctrl => ctrl.get('type')?.value === type);
+
+    if (checked && index === -1) {
+      this.wasteDetailsArray.push(this.fb.group({
+        type,
+        weight: [0, [Validators.required, Validators.min(0)]]
+      }));
+    } else if (!checked && index >= 0) {
+      this.wasteDetailsArray.removeAt(index);
     }
+
+    this.checkTotalWeightValidity();
+  }
+
+  checkTotalWeightValidity() {
+    const total = this.totalWeight;
+    this.weightError = total < 1000 || total > 10000;
+  }
+
+  onWeightChange() {
+    this.checkTotalWeightValidity();
   }
 
   addRequest() {
-    // Check if form is valid before submitting
-    if (this.requestForm.valid) {
-      // Get user id from local storage
+    if (this.requestForm.valid && !this.weightError) {
       const user = localStorage.getItem('loggedInUser');
       if (!user) return;
 
       const userId = JSON.parse(user).id;
-      const requestData = {...this.requestForm.value, userId, status: 'en attente'};
+      const requestData = {
+        id : Date.now(),
+        ...this.requestForm.value,
+        userId,
+        status: 'en attente'
+      };
 
-      this.collectionService.addRequest(requestData).subscribe(() => {
-        this.router.navigate(['/request/add']);
+      this.collectionService.addRequest(requestData).subscribe((response) => {
+        console.log('Nouvelle requête ajoutée :', response);
+        this.router.navigate(['request/my-request']);
       });
+
     }
   }
-
 }
