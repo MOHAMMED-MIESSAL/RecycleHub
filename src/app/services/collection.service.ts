@@ -36,4 +36,9 @@ export class CollectionService {
   getAllRequests(): Observable<CollectionRequest[]> {
     return this.http.get<CollectionRequest[]>(this.apiUrl);
   }
+
+  getRequestsByUserId(userId: number | string): Observable<CollectionRequest[]> {
+    return this.http.get<CollectionRequest[]>(`http://localhost:3000/requests?userId=${userId}`);
+  }
+
 }

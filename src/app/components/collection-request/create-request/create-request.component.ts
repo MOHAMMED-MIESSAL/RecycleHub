@@ -35,23 +35,43 @@ export class CreateRequestComponent {
 
   // Function to add a request
   addRequest() {
-    if (this.requestForm.valid && !this.weightError) {
-      const user = localStorage.getItem('loggedInUser');
-      if (!user) return;
+    this.checkRequestLimit().then(isLimitReached => {
+      // Check if the form is valid and the total weight is between 1000 and 10000
+      // Also check if the limit of 3 pending requests is reached
+      if (this.requestForm.valid && !this.weightError && !isLimitReached) {
+        const user = localStorage.getItem('loggedInUser');
+        if (!user) return;
 
-      const userId = JSON.parse(user).id;
-      const requestData = {
-        id: String(Date.now()),
-        ...this.requestForm.value,
-        userId,
-        status: 'en attente'
-      };
+        const userId = JSON.parse(user).id;
+        const requestData = {
+          id: String(Date.now()),
+          ...this.requestForm.value,
+          userId,
+          status: 'en attente'
+        };
 
-      this.collectionService.addRequest(requestData).subscribe((response) => {
-        this.router.navigate(['request/my-request']);
+        this.collectionService.addRequest(requestData).subscribe(() => {
+          this.router.navigate(['request/my-request']);
+        });
+      } else {
+        // Display an alert if the form is invalid or the limit is reached
+        alert("Vous avez déjà 3 demandes en attente ");
+      }
+    });
+  }
+
+  // Function to check if the user has reached the limit of 3 pending requests
+  checkRequestLimit(): Promise<boolean> {
+    const user = localStorage.getItem('loggedInUser');
+    if (!user) return Promise.resolve(false);
+
+    const userId = JSON.parse(user).id;
+    return new Promise((resolve) => {
+      this.collectionService.getRequestsByUserId(userId).subscribe((requests) => {
+        const pendingRequests = requests.filter(request => request.status === 'en attente' || request.status === 'rejetée');
+        resolve(pendingRequests.length >= 3);  // Get the number of pending requests and check if it's greater than or equal to 3
       });
-
-    }
+    });
   }
 
   // Getters for form controls and arrays to simplify the template code :
