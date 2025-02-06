@@ -1,6 +1,8 @@
 <app-navbar></app-navbar>
 <h2>Mes demandes de collecte</h2>
 
+<button [routerLink]="['/request/add']">Ajouter une demande</button>
+
 <div *ngIf="requests.length === 0">
   <p>Aucune demande en cours.</p>
 </div>
