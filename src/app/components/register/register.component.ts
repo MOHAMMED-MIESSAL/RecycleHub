@@ -3,19 +3,21 @@
   import {User} from '../../models/user.model';
   import {UserService} from '../../services/user.service';
   import { Router } from '@angular/router';
+  import {NavbarComponent} from "../navbar/navbar.component";
 
   @Component({
     selector: 'app-register',
     standalone: true,
     imports: [
       FormsModule,
+      NavbarComponent,
     ],
     templateUrl: './register.component.html',
     styleUrl: './register.component.css'
   })
   export class RegisterComponent{
     user: User = {
-      id: Date.now(),
+      id: String(Date.now()),
       email: '',
       password: '',
       firstName: '',
@@ -31,7 +33,6 @@
 
     onSubmit() {
       this.userService.addUser(this.user).subscribe(() => {
-        console.log('Utilisateur enregistré avec succès');
         this.router.navigate(['/login']);
       });
     }

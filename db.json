@@ -1,42 +1,31 @@
 {
   "users": [
     {
-      "id": "1738852911704",
-      "email": "myna@mailinator.com",
-      "password": "myna@mailinator.com",
-      "firstName": "Lee",
-      "lastName": "Meyers",
-      "address": "Sint rerum impedit ",
-      "phoneNumber": "+1 (941) 906-1765",
-      "dateOfBirth": "2008-06-02",
-      "role": "particulier"
-    },
-    {
-      "id": 1738853417418,
-      "email": "lehejiqa@mailinator.com",
-      "password": "Pa$$w0rd!",
-      "firstName": "Vincent",
-      "lastName": "Vinson",
-      "address": "Et occaecat et dolor",
-      "phoneNumber": "+1 (511) 269-2621",
-      "dateOfBirth": "1999-05-22",
+      "id": "1738856377851",
+      "email": "mohammedmiessal@gmail.com",
+      "password": "mohammedmiessal@gmail.com",
+      "firstName": "Mohammed",
+      "lastName": "Miessal",
+      "address": "Casablanca",
+      "phoneNumber": "+1 (757) 368-4886",
+      "dateOfBirth": "2025-02-07",
       "role": "particulier"
     }
   ],
   "requests": [
     {
-      "id": "1738853083184",
+      "id": "1738856804561",
       "wasteDetails": [
         {
           "type": "Verre",
-          "weight": 2000
+          "weight": 1234
         }
       ],
-      "address": "oih)oh",
-      "date": "2025-02-07",
-      "timeSlot": "15h00 - 18h00",
-      "notes": "piubhpib\n",
-      "userId": 1738852911704,
+      "address": "iugpi",
+      "date": "2025-02-08",
+      "timeSlot": "12h00 - 15h00",
+      "notes": "iougp",
+      "userId": "1738856377851",
       "status": "en attente"
     }
   ]

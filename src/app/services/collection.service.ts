@@ -25,7 +25,7 @@ export class CollectionService {
     return this.http.put<CollectionRequest>(`${this.apiUrl}/${request.id}`, request);
   }
 
-  deleteRequest(id: number): Observable<{}> {
+  deleteRequest(id: string): Observable<{}> {
     return this.http.delete<{}>(`${this.apiUrl}/${id}`);
   }
 

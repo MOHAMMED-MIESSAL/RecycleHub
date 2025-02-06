@@ -14,7 +14,7 @@ import {NavbarComponent} from "../../navbar/navbar.component";
 })
 export class MyRequestComponent implements OnInit {
   requests: CollectionRequest[] = [];
-  userId?: number; // User ID from local storage
+  userId?: number;
 
   constructor(
     private collectionService: CollectionService,
@@ -43,7 +43,7 @@ export class MyRequestComponent implements OnInit {
     return wasteDetails.reduce((total, waste) => total + waste.weight, 0);
   }
 
-  deleteRequest(id: number) {
+  deleteRequest(id: string) {
     this.collectionService.deleteRequest(id).subscribe(() => {
       this.requests = this.requests.filter(req => req.id !== id);
     });

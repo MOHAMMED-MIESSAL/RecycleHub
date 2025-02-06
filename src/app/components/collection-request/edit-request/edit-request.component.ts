@@ -28,7 +28,8 @@ export class EditRequestComponent implements OnInit {
   ) {
   }
 
-
+  // First, we subscribe to the route params to get the request ID.
+  // Then, we call the service to get the request data by ID.
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.requestId = Number(params['id']);
@@ -49,7 +50,7 @@ export class EditRequestComponent implements OnInit {
     });
   }
 
-
+  // We initialize the form with the request data.
   private initForm(request: CollectionRequest) {
     this.requestForm = this.fb.group({
       wasteDetails: this.fb.array(
@@ -69,6 +70,23 @@ export class EditRequestComponent implements OnInit {
     this.checkTotalWeightValidity();
   }
 
+  // Function to update a request
+  updateRequest() {
+    if (this.requestForm.valid && !this.weightError) {
+      const updatedRequest = {
+        id: this.requestId,
+        ...this.requestForm.value,
+        status: 'en attente'
+      };
+
+      this.collectionService.updateRequest(updatedRequest).subscribe(() => {
+        this.router.navigate(['/request/my-request']);
+      });
+    }
+  }
+
+  // Getters to access form controls easily in the template
+
   get wasteDetailsArray(): FormArray {
     return this.requestForm.get('wasteDetails') as FormArray;
   }
@@ -84,19 +102,6 @@ export class EditRequestComponent implements OnInit {
 
   onWeightChange() {
     this.checkTotalWeightValidity();
-  }
-
-  updateRequest() {
-    if (this.requestForm.valid && !this.weightError) {
-      const updatedRequest = {
-        id: this.requestId,
-        ...this.requestForm.value,
-      };
-
-      this.collectionService.updateRequest(updatedRequest).subscribe(() => {
-        this.router.navigate(['/request/my-request']);
-      });
-    }
   }
 
 

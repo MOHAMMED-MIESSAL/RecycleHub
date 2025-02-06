@@ -19,7 +19,7 @@ export interface WasteDetail {
 }
 
 export interface CollectionRequest {
-  id: number;
+  id: string;
   userId: number;
   wasteDetails: WasteDetail[]; // Remplace wasteType et wasteWeights
   photos?: string[];

@@ -33,6 +33,29 @@ export class CreateRequestComponent {
     });
   }
 
+  // Function to add a request
+  addRequest() {
+    if (this.requestForm.valid && !this.weightError) {
+      const user = localStorage.getItem('loggedInUser');
+      if (!user) return;
+
+      const userId = JSON.parse(user).id;
+      const requestData = {
+        id: String(Date.now()),
+        ...this.requestForm.value,
+        userId,
+        status: 'en attente'
+      };
+
+      this.collectionService.addRequest(requestData).subscribe((response) => {
+        this.router.navigate(['request/my-request']);
+      });
+
+    }
+  }
+
+  // Getters for form controls and arrays to simplify the template code :
+
   getWeightControl(waste: any): FormControl {
     return waste.get('weight') as FormControl;
   }
@@ -72,24 +95,4 @@ export class CreateRequestComponent {
     this.checkTotalWeightValidity();
   }
 
-  addRequest() {
-    if (this.requestForm.valid && !this.weightError) {
-      const user = localStorage.getItem('loggedInUser');
-      if (!user) return;
-
-      const userId = JSON.parse(user).id;
-      const requestData = {
-        id : Date.now(),
-        ...this.requestForm.value,
-        userId,
-        status: 'en attente'
-      };
-
-      this.collectionService.addRequest(requestData).subscribe((response) => {
-        console.log('Nouvelle requête ajoutée :', response);
-        this.router.navigate(['request/my-request']);
-      });
-
-    }
-  }
 }
