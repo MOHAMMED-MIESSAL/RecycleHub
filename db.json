@@ -1,26 +1,32 @@
 {
   "users": [
     {
-      "id": "1738755486608",
-      "email": "masawoteq@mailinator.com",
-      "password": "Pa$$w0rd!",
-      "firstName": "Ezra",
-      "lastName": "Little",
-      "address": "Explicabo Aliqua Q",
-      "phoneNumber": "+1 (919) 484-9917",
-      "dateOfBirth": "2015-08-12",
-      "role": "collecteur"
-    },
-    {
-      "id": 1738789173453,
+      "id": "1738856377851",
       "email": "mohammedmiessal@gmail.com",
-      "password": "password",
+      "password": "mohammedmiessal@gmail.com",
       "firstName": "Mohammed",
       "lastName": "Miessal",
       "address": "Casablanca",
       "phoneNumber": "+1 (757) 368-4886",
-      "dateOfBirth": "2025-02-28",
+      "dateOfBirth": "2025-02-07",
       "role": "particulier"
+    }
+  ],
+  "requests": [
+    {
+      "id": "1738856804561",
+      "wasteDetails": [
+        {
+          "type": "Verre",
+          "weight": 1234
+        }
+      ],
+      "address": "iugpi",
+      "date": "2025-02-08",
+      "timeSlot": "12h00 - 15h00",
+      "notes": "iougp",
+      "userId": "1738856377851",
+      "status": "en attente"
     }
   ]
 }

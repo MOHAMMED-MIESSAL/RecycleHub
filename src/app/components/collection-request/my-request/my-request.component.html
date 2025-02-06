@@ -1,0 +1,31 @@
+<app-navbar></app-navbar>
+<h2>Mes demandes de collecte</h2>
+
+<div *ngIf="requests.length === 0">
+  <p>Aucune demande en cours.</p>
+</div>
+
+<ul>
+  <li *ngFor="let request of requests">
+    <h3>{{ request.date | date: 'dd/MM/yyyy' }} - {{ request.timeSlot }}</h3>
+    <p><strong>Adresse :</strong> {{ request.address }}</p>
+
+    <p><strong>Déchets :</strong></p>
+    <ul>
+      <li *ngFor="let waste of request.wasteDetails">
+        {{ waste.type }} : {{ waste.weight }} g
+      </li>
+    </ul>
+
+    <p><strong>Poids total :</strong> {{ getTotalWeight(request.wasteDetails) }} g</p>
+
+    <p><strong>Notes :</strong> {{ request.notes }}</p>
+
+    <button *ngIf="request.status === 'en attente'" (click)="deleteRequest(request.id)">
+      Supprimer
+    </button>
+
+    <button *ngIf="request.status === 'en attente'" [routerLink]="['/request/edit', request.id]"> Modifier</button>
+
+  </li>
+</ul>
