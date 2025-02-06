@@ -12,7 +12,7 @@
       "role": "collecteur"
     },
     {
-      "id": 1738789173453,
+      "id": "1738789173453",
       "email": "mohammedmiessal@gmail.com",
       "password": "password",
       "firstName": "Mohammed",
@@ -20,6 +20,17 @@
       "address": "Casablanca",
       "phoneNumber": "+1 (757) 368-4886",
       "dateOfBirth": "2025-02-28",
+      "role": "particulier"
+    },
+    {
+      "id": "1738853529320",
+      "email": "jasaj@mailinator.com",
+      "password": "Pa$$w0rd!",
+      "firstName": "Gloria",
+      "lastName": "Elliott",
+      "address": "Aut dolor est quis ",
+      "phoneNumber": "+1 (361) 443-3098",
+      "dateOfBirth": "1982-05-15",
       "role": "particulier"
     }
   ]
