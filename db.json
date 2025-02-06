@@ -1,76 +1,31 @@
 {
   "users": [
     {
-      "id": "1738856377851",
+      "id": "1738882106572",
       "email": "mohammedmiessal@gmail.com",
       "password": "mohammedmiessal@gmail.com",
       "firstName": "Mohammed",
       "lastName": "Miessal",
-      "address": "Casablanca",
-      "phoneNumber": "+1 (757) 368-4886",
-      "dateOfBirth": "2025-02-07",
-      "role": "particulier"
-    },
-    {
-      "id": "1738878406546",
-      "email": "jycil@mailinator.com",
-      "password": "jycil@mailinator.com",
-      "firstName": "Maryam",
-      "lastName": "Sampson",
-      "address": "Adipisci sint harum",
-      "phoneNumber": "+1 (429) 109-8849",
-      "dateOfBirth": "1992-01-26",
+      "address": "CASABLANCA",
+      "phoneNumber": "09876545678",
+      "dateOfBirth": "2025-02-13",
       "role": "particulier"
     }
   ],
   "requests": [
     {
-      "id": "1738877616482",
+      "id": "1738882264739",
       "wasteDetails": [
         {
-          "type": "Verre",
-          "weight": 1000
-        },
-        {
-          "type": "Papier",
+          "type": "Plastique",
           "weight": 1000
         }
       ],
-      "address": "Casablanca",
-      "date": "2025-02-14",
-      "timeSlot": "15h00 - 18h00",
-      "notes": "Note A",
-      "userId": "1738856377851",
-      "status": "en attente"
-    },
-    {
-      "id": "1738877662507",
-      "wasteDetails": [
-        {
-          "type": "Verre",
-          "weight": 8000
-        }
-      ],
-      "address": "Rabat",
-      "date": "2025-02-06",
+      "address": "fihoez",
+      "date": "2025-02-01",
       "timeSlot": "12h00 - 15h00",
-      "notes": "Note 2",
-      "userId": "1738856377851",
-      "status": "en attente"
-    },
-    {
-      "id": "1738877682306",
-      "wasteDetails": [
-        {
-          "type": "Métal",
-          "weight": 3000
-        }
-      ],
-      "address": "Sidi Moumen",
-      "date": "2025-02-07",
-      "timeSlot": "15h00 - 18h00",
-      "notes": "Note 3",
-      "userId": "1738856377851",
+      "notes": "fef",
+      "userId": "1738882106572",
       "status": "en attente"
     }
   ]
