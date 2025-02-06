@@ -1,0 +1,15 @@
+<h1>Profil utilisateur</h1>
+
+<div *ngIf="user">
+  <p><strong>Nom :</strong> {{ user.firstName }} {{ user.lastName }}</p>
+  <p><strong>Email :</strong> {{ user.email }}</p>
+  <p><strong>Adresse :</strong> {{ user.address }}</p>
+  <p><strong>Téléphone :</strong> {{ user.phoneNumber }}</p>
+  <p><strong>Date de naissance :</strong> {{ user.dateOfBirth }}</p>
+  <p><strong>Rôle :</strong> {{ user.role }}</p>
+
+  <button (click)="deleteUser()">Supprimer mon compte</button>
+  <button routerLink="/profile/edit">Modifier mon profil</button>
+</div>
+
+<p *ngIf="!user">Chargement des informations...</p>

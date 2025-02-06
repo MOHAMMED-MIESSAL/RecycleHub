@@ -1,0 +1,20 @@
+<h1>Modifier votre profil</h1>
+
+<form [formGroup]="userForm" (ngSubmit)="updateUser()">
+  <label>Prénom :</label>
+  <input type="text" formControlName="firstName" required> <br>
+
+  <label>Nom :</label>
+  <input type="text" formControlName="lastName" required> <br>
+
+  <label>Email :</label>
+  <input type="email" formControlName="email" required> <br>
+
+  <label>Téléphone :</label>
+  <input type="text" formControlName="phoneNumber" required> <br>
+
+  <label>Adresse :</label>
+  <input type="text" formControlName="address" required> <br>
+
+  <button type="submit" [disabled]="userForm.invalid">Mettre à jour</button>
+</form>
