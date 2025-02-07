@@ -1,20 +1,16 @@
 {
-  "users": [],
-  "requests": [
+  "users": [
     {
-      "id": "1738890346987",
-      "wasteDetails": [
-        {
-          "type": "Plastique",
-          "weight": 1234
-        }
-      ],
-      "address": "Temporibus eiusmod q",
-      "date": "2016-02-11",
-      "timeSlot": "15h00 - 18h00",
-      "notes": "Sunt velit nisi faci",
-      "userId": null,
-      "status": "en attente"
+      "id": "1738918619860",
+      "email": "mohammedmiessal@gmail.com",
+      "password": "mohammedmiessal@gmail.com",
+      "firstName": "Barbara",
+      "lastName": "Duran",
+      "address": "Nisi amet qui delec",
+      "phoneNumber": "+1 (934) 781-4115",
+      "dateOfBirth": "1995-12-10",
+      "role": "particulier"
     }
-  ]
+  ],
+  "requests": []
 }

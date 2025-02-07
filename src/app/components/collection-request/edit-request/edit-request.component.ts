@@ -73,9 +73,16 @@ export class EditRequestComponent implements OnInit {
   // Function to update a request
   updateRequest() {
     if (this.requestForm.valid && !this.weightError) {
+
+      const user = localStorage.getItem('loggedInUser');
+      if (!user) return;
+
+      const userId = JSON.parse(user).id;
+
       const updatedRequest = {
         id: this.requestId,
         ...this.requestForm.value,
+        userId,
         status: 'en attente'
       };
 
