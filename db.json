@@ -1,31 +1,19 @@
 {
-  "users": [
-    {
-      "id": "1738882106572",
-      "email": "mohammedmiessal@gmail.com",
-      "password": "mohammedmiessal@gmail.com",
-      "firstName": "Mohammed",
-      "lastName": "Miessal",
-      "address": "CASABLANCA",
-      "phoneNumber": "09876545678",
-      "dateOfBirth": "2025-02-13",
-      "role": "particulier"
-    }
-  ],
+  "users": [],
   "requests": [
     {
-      "id": "1738882264739",
+      "id": "1738890346987",
       "wasteDetails": [
         {
           "type": "Plastique",
-          "weight": 1000
+          "weight": 1234
         }
       ],
-      "address": "fihoez",
-      "date": "2025-02-01",
-      "timeSlot": "12h00 - 15h00",
-      "notes": "fef",
-      "userId": "1738882106572",
+      "address": "Temporibus eiusmod q",
+      "date": "2016-02-11",
+      "timeSlot": "15h00 - 18h00",
+      "notes": "Sunt velit nisi faci",
+      "userId": null,
       "status": "en attente"
     }
   ]

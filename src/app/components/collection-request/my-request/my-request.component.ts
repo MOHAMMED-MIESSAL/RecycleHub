@@ -34,7 +34,7 @@ export class MyRequestComponent implements OnInit {
 
   loadRequests() {
     if (!this.userId) return;
-    this.collectionService.getUserRequests(this.userId).subscribe((requests: CollectionRequest[]) => {
+    this.collectionService.getRequestsByUserId(this.userId).subscribe((requests: CollectionRequest[]) => {
       this.requests = requests;
     });
   }
