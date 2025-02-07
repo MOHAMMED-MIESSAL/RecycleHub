@@ -1,5 +1,5 @@
 export interface User {
-  id: number;
+  id: string;
   email: string;
   password: string;
   firstName: string;
@@ -7,6 +7,6 @@ export interface User {
   address: string;
   phoneNumber: string;
   dateOfBirth: string;
-  profilePicture?: string; // Optionnel
+  profilePicture?: string; // Optional
   role: 'particulier' | 'collecteur';
 }
