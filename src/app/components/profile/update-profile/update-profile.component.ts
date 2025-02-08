@@ -2,13 +2,15 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {UserService} from '../../../services/user.service';
 import {Router} from '@angular/router';
+import {NavbarComponent} from "../../navbar/navbar.component";
 
 
 @Component({
   selector: 'app-update-profile',
   standalone: true,
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NavbarComponent
   ],
   templateUrl: './update-profile.component.html',
   styleUrls: ['./update-profile.component.css']
@@ -35,6 +37,7 @@ export class UpdateProfileComponent implements OnInit {
 
 
   ngOnInit() {
+    // Get the user data from the local storage
     const user = localStorage.getItem('loggedInUser');
     if (user) {
       const parsedUser = JSON.parse(user);
@@ -55,7 +58,7 @@ export class UpdateProfileComponent implements OnInit {
   updateUser() {
     if (!this.userId || this.userForm.invalid) return;
 
-    const updatedUser = {...this.user, ...this.userForm.value}; // Fusionner les données
+    const updatedUser = {...this.user, ...this.userForm.value}; // Merge the user data with the form data
 
     this.userService.updateUser(this.userId, updatedUser).subscribe(() => {
       localStorage.setItem('loggedInUser', JSON.stringify(updatedUser));

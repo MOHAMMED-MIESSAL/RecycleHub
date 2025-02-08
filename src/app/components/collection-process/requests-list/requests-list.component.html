@@ -1,0 +1,18 @@
+<app-navbar></app-navbar>
+<h2>Demandes disponibles</h2>
+<button>
+  <a routerLink="/collection-process/reserved-requests">Mes demandes réservées</a>
+  </button>
+<ul>
+  <li *ngFor="let request of availableRequests$ | async">
+    <strong>Adresse :</strong> {{ request.address }} <br>
+    <strong>Poids total :</strong> {{ getTotalWeight(request) }} g <br>
+    <strong>Statut :</strong> {{ request.status }} <br>
+
+    <button *ngIf="request.status === 'en attente'" (click)="reserveRequest(request.id)">
+      Réserver
+    </button>
+  </li>
+</ul>
+
+
