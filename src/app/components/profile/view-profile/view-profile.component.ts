@@ -2,13 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import {Router, RouterLink} from '@angular/router';
 import {NgIf} from "@angular/common";
+import {NavbarComponent} from "../../navbar/navbar.component";
 
 @Component({
   selector: 'app-view-profile',
   standalone: true,
   imports: [
     NgIf,
-    RouterLink
+    RouterLink,
+    NavbarComponent
   ],
   templateUrl: './view-profile.component.html',
   styleUrls: ['./view-profile.component.css']
@@ -42,7 +44,7 @@ export class ViewProfileComponent implements OnInit {
     if (!this.userId) return;
 
     this.userService.deleteUser(this.userId).subscribe(() => {
-      localStorage.removeItem('loggedInUser'); // Supprime les infos de session
+      localStorage.removeItem('loggedInUser');
       this.router.navigate(['/login']);
     });
   }

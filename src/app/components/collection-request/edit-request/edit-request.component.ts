@@ -33,7 +33,6 @@ export class EditRequestComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.requestId = Number(params['id']);
-      console.log("Request ID récupéré :", this.requestId);
 
       if (!this.requestId || isNaN(this.requestId)) {
         console.error("ID de la demande invalide !");

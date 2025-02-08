@@ -1,9 +1,30 @@
-<button (click)="logout()" >Logout</button>
+<div style="display: flex;justify-content: space-evenly; margin-bottom: 15px">
 
-<a routerLink="/request/add" > Add Request </a>
+  <button *ngIf="isLoggedIn">
+    <a routerLink="/request/add"> Add Request </a>
+  </button>
 
-<a routerLink="/request/my-request" > List Request </a>
+  <button *ngIf="isLoggedIn">
+    <a routerLink="/request/my-request"> List Request </a>
+  </button>
 
-<a routerLink="/register">Register</a>
+  <button *ngIf="!isLoggedIn">
+    <a routerLink="/register">Register</a>
+  </button>
 
-<a routerLink="/login">Login</a>
+  <button *ngIf="!isLoggedIn">
+    <a routerLink="/login">Login</a>
+  </button>
+
+  <button *ngIf="isLoggedIn">
+    <a routerLink="/profile">Profile</a>
+  </button>
+
+  <button *ngIf="isLoggedIn">
+    <a routerLink="/collection-process">Demands</a>
+  </button>
+
+
+  <button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
+</div>
+

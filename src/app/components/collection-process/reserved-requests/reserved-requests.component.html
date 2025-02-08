@@ -1,0 +1,20 @@
+<h2>Vos demandes réservées</h2>
+<ul>
+  <li *ngFor="let request of reservedRequests$ | async">
+    <strong>Adresse :</strong> {{ request.address }} <br>
+    <strong>Poids total :</strong> {{ getTotalWeight(request) }} g <br>
+    <strong>Statut :</strong> {{ request.status }} <br>
+
+    <button *ngIf="request.status === 'occupée'" (click)="startCollection(request.id)">
+      Démarrer la collecte
+    </button>
+
+    <button *ngIf="request.status === 'en cours'" (click)="completeCollection(request.id, 'validée')">
+      Valider
+    </button>
+
+    <button *ngIf="request.status === 'en cours'" (click)="completeCollection(request.id, 'rejetée')">
+      Rejeter
+    </button>
+  </li>
+</ul>

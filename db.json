@@ -1,16 +1,55 @@
 {
   "users": [
     {
-      "id": "1738918619860",
+      "id": "1738942328687",
+      "email": "collector1@example.com",
+      "password": "collector1@example.com",
+      "firstName": "Jeanette",
+      "lastName": "Rowland",
+      "address": "Casa",
+      "phoneNumber": "+1 (874) 503-3134",
+      "dateOfBirth": "1982-04-08",
+      "role": "collecteur"
+    },
+    {
+      "id": "1738942328689",
+      "email": "collector2@example.com",
+      "password": "collector2@example.com",
+      "firstName": "Jeanette",
+      "lastName": "Rowland",
+      "address": "Rabat",
+      "phoneNumber": "+1 (874) 503-3134",
+      "dateOfBirth": "1982-04-08",
+      "role": "collecteur"
+    },
+    {
+      "id": "1738944636357",
       "email": "mohammedmiessal@gmail.com",
       "password": "mohammedmiessal@gmail.com",
-      "firstName": "Barbara",
-      "lastName": "Duran",
-      "address": "Nisi amet qui delec",
-      "phoneNumber": "+1 (934) 781-4115",
-      "dateOfBirth": "1995-12-10",
+      "firstName": "Mohammed",
+      "lastName": "Miessal",
+      "address": "Casa",
+      "phoneNumber": "+1 (703) 945-9843",
+      "dateOfBirth": "2021-03-27",
       "role": "particulier"
     }
   ],
-  "requests": []
+  "requests": [
+    {
+      "id": "1739030094556",
+      "wasteDetails": [
+        {
+          "type": "Papier",
+          "weight": 1234
+        }
+      ],
+      "address": "Casa",
+      "date": "2025-02-14",
+      "timeSlot": "12h00 - 15h00",
+      "notes": "note 1",
+      "userId": "1738944636357",
+      "status": "en cours",
+      "collectorId": "1738942328687"
+    }
+  ]
 }
