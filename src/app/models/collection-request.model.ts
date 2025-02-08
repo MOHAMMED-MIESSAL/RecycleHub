@@ -6,11 +6,12 @@ export interface WasteDetail {
 export interface CollectionRequest {
   id: string;
   userId: number;
-  wasteDetails: WasteDetail[]; // Remplace wasteType et wasteWeights
+  wasteDetails: WasteDetail[];
   photos?: string[];
   address: string;
   date: string;
   timeSlot: string;
   notes?: string;
-  status: "en attente" | "validée" | "rejetée";
+  status: "en attente" | "validée" | "rejetée" | "en cours" | "occupée";
+  collectorId?: string;  // Collector id for reserved requests
 }
