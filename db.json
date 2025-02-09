@@ -36,50 +36,34 @@
   ],
   "requests": [
     {
-      "id": "1739109939815",
+      "id": "1739118735650",
       "wasteDetails": [
         {
           "type": "Verre",
-          "weight": 1000
+          "weight": 1234
         }
       ],
       "address": "Casa",
-      "date": "2025-02-14",
-      "timeSlot": "12h00 - 15h00",
-      "notes": "dzd",
+      "date": "2025-02-15",
+      "timeSlot": "15h00 - 18h00",
+      "notes": "dzad",
       "userId": "1738944636357",
       "status": "validée",
       "collectorId": "1738942328687"
     },
     {
-      "id": "1739111053512",
+      "id": "1739118826077",
       "wasteDetails": [
         {
-          "type": "Métal",
-          "weight": 1000
-        }
-      ],
-      "address": "Rabat",
-      "date": "2025-02-14",
-      "timeSlot": "12h00 - 15h00",
-      "notes": "sadz",
-      "userId": "1738944636357",
-      "status": "validée",
-      "collectorId": "1738942328689"
-    },
-    {
-      "id": "1739111447165",
-      "wasteDetails": [
-        {
-          "type": "Plastique",
-          "weight": 1000
+          "type": "Verre",
+          "weight": 7800
         }
       ],
       "address": "Casa",
-      "date": "2025-02-08",
+      "date": "2025-02-13",
       "timeSlot": "12h00 - 15h00",
-      "notes": "zdzd",
-      "userId": null,
+      "notes": "dzd",
+      "userId": "1738944636357",
       "status": "validée",
       "collectorId": "1738942328687"
     }

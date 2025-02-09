@@ -8,9 +8,9 @@ import { pointsReducer } from './store/points/points.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes), // Configuration des routes
-    provideHttpClient(), // Pour utiliser HttpClient
+    provideRouter(routes),
+    provideHttpClient(),
     provideStore({ points: pointsReducer }), // NgRx Store
-    provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }) // Outils de dev pour NgRx
+    provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })
   ]
 };
