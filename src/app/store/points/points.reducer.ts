@@ -1,37 +1,68 @@
-import {createReducer, on} from '@ngrx/store';
-import {updatePoints, getAllPoints} from './points.actions';
+// points.reducer.ts
+import { createReducer, on } from '@ngrx/store';
+import { updatePoints, getAllPoints, convertPointsToVoucher } from './points.actions';
 
-// Define the shape of the state
 interface UserPoints {
   [userId: string]: number;
 }
 
-// Define the initial state
 export interface State {
   points: UserPoints;
 }
 
-// Define the initial state
 export const initialState: State = {
   points: {},
 };
 
-// Define the reducer
 export const pointsReducer = createReducer(
   initialState,
-  on(updatePoints, (state, {userId, points}) => ({
+  on(updatePoints, (state, { userId, points }) => ({
     ...state,
     points: {
       ...state.points,
-      [userId]: (state.points[userId] || 0) + points
-    }
+      [userId]: (state.points[userId] || 0) + points,
+    },
   })),
 
-  on(getAllPoints, (state, {userId, points}) => ({
+  on(getAllPoints, (state, { userId, points }) => ({
     ...state,
     points: {
       ...state.points,
-      [userId]: points
+      [userId]: points,
+    },
+  })),
+
+  on(convertPointsToVoucher, (state, { userId, voucherType }) => {
+    const currentPoints = state.points[userId] || 0;
+    let pointsToDeduct = 0;
+
+    // Définir les points à déduire en fonction du type de bon d'achat
+    switch (voucherType) {
+      case '50':
+        pointsToDeduct = 100;
+        break;
+      case '120':
+        pointsToDeduct = 200;
+        break;
+      case '350':
+        pointsToDeduct = 500;
+        break;
+      default:
+        pointsToDeduct = 0;
     }
-  }))
+
+    // Vérifier si l'utilisateur a suffisamment de points
+    if (currentPoints >= pointsToDeduct) {
+      return {
+        ...state,
+        points: {
+          ...state.points,
+          [userId]: currentPoints - pointsToDeduct,
+        },
+      };
+    } else {
+      // Si l'utilisateur n'a pas assez de points, ne rien faire
+      return state;
+    }
+  })
 );

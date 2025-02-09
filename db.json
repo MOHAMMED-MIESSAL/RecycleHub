@@ -36,33 +36,21 @@
   ],
   "requests": [
     {
-      "id": "1739118735650",
+      "id": "1739128446812",
       "wasteDetails": [
         {
           "type": "Verre",
-          "weight": 1234
-        }
-      ],
-      "address": "Casa",
-      "date": "2025-02-15",
-      "timeSlot": "15h00 - 18h00",
-      "notes": "dzad",
-      "userId": "1738944636357",
-      "status": "validée",
-      "collectorId": "1738942328687"
-    },
-    {
-      "id": "1739118826077",
-      "wasteDetails": [
+          "weight": 6500
+        },
         {
-          "type": "Verre",
-          "weight": 7800
+          "type": "Papier",
+          "weight": 900
         }
       ],
       "address": "Casa",
-      "date": "2025-02-13",
+      "date": "2025-02-14",
       "timeSlot": "12h00 - 15h00",
-      "notes": "dzd",
+      "notes": "ihe",
       "userId": "1738944636357",
       "status": "validée",
       "collectorId": "1738942328687"

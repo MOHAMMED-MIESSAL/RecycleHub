@@ -1,40 +1,24 @@
+// points.service.ts
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable, of } from 'rxjs';
-import {updatePoints, getAllPoints} from '../store/points/points.actions';
-import { selectUserPoints } from '../store/points/points.selectors';
-import { State } from '../store/points/points.reducer';
+import { of } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PointsService {
   private localStorageKey = 'userPoints';
 
-  constructor(private store: Store<{ points: State }>) {}
+  constructor() {}
 
-  // Method to update user points
-  updateUserPoints(userId: string, newPoints: number): Observable<number> {
+  getUserPoints(userId: string) {
     const userPoints = JSON.parse(localStorage.getItem(this.localStorageKey) || '{}');
-    const currentPoints = userPoints[userId] || 0;
-    userPoints[userId] = currentPoints + newPoints;
+    return of(userPoints[userId] || 0);
+  }
+
+  updateUserPoints(userId: string, newPoints: number) {
+    const userPoints = JSON.parse(localStorage.getItem(this.localStorageKey) || '{}');
+    userPoints[userId] = newPoints;
     localStorage.setItem(this.localStorageKey, JSON.stringify(userPoints));
-
-    this.store.dispatch(updatePoints({ userId, points: newPoints }));
-
     return of(userPoints[userId]);
-  }
-
-  // Method to get all user points
-  getUserPoints(userId: string): void {
-    const userPoints = JSON.parse(localStorage.getItem(this.localStorageKey) || '{}');
-    const points = userPoints[userId] || 0;
-
-    this.store.dispatch(getAllPoints({ userId, points }));
-  }
-
-  // Method to select user points
-  selectUserPoints(userId: string): Observable<number> {
-    return this.store.select(selectUserPoints(userId));
   }
 }

@@ -19,3 +19,8 @@ export const getPointsSuccess = createAction(
   props<{ userId: string; points: number }>()
 );
 */
+
+export const convertPointsToVoucher = createAction(
+  '[Points] Convert Points to Voucher',
+  props<{ userId: string; voucherType: '50' | '120' | '350' }>()
+);

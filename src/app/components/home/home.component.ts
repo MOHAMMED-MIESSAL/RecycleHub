@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
 
     if (userId) {
       this.pointsService.getUserPoints(userId); // Get points from localStorage
-      this.points$ = this.pointsService.selectUserPoints(userId);
+      this.points$ = this.pointsService.getUserPoints(userId);
     }
   }
 }

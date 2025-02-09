@@ -11,6 +11,7 @@ import {ViewProfileComponent} from "./components/profile/view-profile/view-profi
 import {UpdateProfileComponent} from "./components/profile/update-profile/update-profile.component";
 import {RequestsListComponent} from "./components/collection-process/requests-list/requests-list.component";
 import {ReservedRequestsComponent} from "./components/collection-process/reserved-requests/reserved-requests.component";
+import {ConvertPointsComponent} from "./components/convert-points/convert-points.component";
 
 
 export const routes: Routes = [
@@ -22,6 +23,7 @@ export const routes: Routes = [
   {path: 'request/add', component: CreateRequestComponent, canActivate: [authGuard,roleGuard], data: {role: 'particulier'}},
   {path: 'request/my-request', component: MyRequestComponent, canActivate: [authGuard,roleGuard], data: {role: 'particulier'}},
   {path: 'request/edit/:id', component: EditRequestComponent, canActivate: [authGuard,roleGuard], data: {role: 'particulier'}},
+  {path: 'convert-points', component: ConvertPointsComponent, canActivate: [authGuard]},
   {path: 'profile', component: ViewProfileComponent, canActivate: [authGuard]},
   {path: 'profile/edit', component: UpdateProfileComponent, canActivate: [authGuard]},
   {path: 'collection-process', component: RequestsListComponent, canActivate: [authGuard,roleGuard], data: {role: 'collecteur'}},
