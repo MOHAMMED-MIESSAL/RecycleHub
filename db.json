@@ -35,6 +35,53 @@
     }
   ],
   "requests": [
-
+    {
+      "id": "1739109939815",
+      "wasteDetails": [
+        {
+          "type": "Verre",
+          "weight": 1000
+        }
+      ],
+      "address": "Casa",
+      "date": "2025-02-14",
+      "timeSlot": "12h00 - 15h00",
+      "notes": "dzd",
+      "userId": "1738944636357",
+      "status": "validée",
+      "collectorId": "1738942328687"
+    },
+    {
+      "id": "1739111053512",
+      "wasteDetails": [
+        {
+          "type": "Métal",
+          "weight": 1000
+        }
+      ],
+      "address": "Rabat",
+      "date": "2025-02-14",
+      "timeSlot": "12h00 - 15h00",
+      "notes": "sadz",
+      "userId": "1738944636357",
+      "status": "validée",
+      "collectorId": "1738942328689"
+    },
+    {
+      "id": "1739111447165",
+      "wasteDetails": [
+        {
+          "type": "Plastique",
+          "weight": 1000
+        }
+      ],
+      "address": "Casa",
+      "date": "2025-02-08",
+      "timeSlot": "12h00 - 15h00",
+      "notes": "zdzd",
+      "userId": null,
+      "status": "validée",
+      "collectorId": "1738942328687"
+    }
   ]
 }

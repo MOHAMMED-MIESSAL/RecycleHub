@@ -1,40 +1,52 @@
-import { Component } from '@angular/core';
-import {AuthService} from "../../services/auth.service";
-import {Router} from "@angular/router";
-import {NavbarComponent} from "../navbar/navbar.component";
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { State } from '../../store/points/points.reducer';
 import { updatePoints } from '../../store/points/points.actions';
-import {AsyncPipe} from "@angular/common"; // Importez l'action
-
+import { AsyncPipe } from '@angular/common';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
-    NavbarComponent,
-    AsyncPipe
+    AsyncPipe,
+    NavbarComponent
   ],
   template: `
+    <app-navbar></app-navbar>
     <h1>Home</h1>
     <p>Points: {{ points$ | async }}</p>
-    <button (click)="addPoints()">Add 100 Points</button>
   `,
-  styleUrl: './home.component.css'
+  styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
-  title = 'RecycleHub';
+export class HomeComponent implements OnInit {
+  points$: Observable<number> = new Observable<number>(); // Initialisation avec un Observable vide
 
-  points$: Observable<number>; // Observable pour les points
+  constructor(private store: Store<{ points: State }>) {}
 
-  constructor(private store: Store<{ points: State }>) {
-    this.points$ = this.store.select(state => state?.points?.points ?? 0);
+  ngOnInit() {
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || '{}');
+    const userId = loggedInUser?.id;
+
+    if (userId) {
+      // Récupérer les points depuis localStorage
+      const storedPoints = JSON.parse(localStorage.getItem('userPoints') || '{}');
+      const userPoints = storedPoints[userId] || 0;
+
+      // Mettre à jour le store avec les points récupérés
+      this.store.dispatch(updatePoints({ userId, points: userPoints }));
+
+      // Sélectionner les points pour l'utilisateur spécifié
+      this.points$ = this.store.select(state => state?.points?.points[userId] ?? 0);
+    }
   }
 
-  // Méthode pour dispatcher une action pour mettre à jour les points
   addPoints() {
-    this.store.dispatch(updatePoints({ points: 100 }));
-  }
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || '{}');
+    const userId = loggedInUser.id; // Récupérer l'ID de l'utilisateur connecté
 
+    // Dispatch de l'action pour mettre à jour les points
+    this.store.dispatch(updatePoints({ userId, points: 100 }));
+  }
 }

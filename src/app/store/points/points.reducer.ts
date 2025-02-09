@@ -1,22 +1,31 @@
-// points.reducer.ts
 import { createReducer, on } from '@ngrx/store';
 import { updatePoints } from './points.actions';
 
-// Définition de l'interface pour l'état
-export interface State {
-  points: number;
+interface UserPoints {
+  [userId: string]: number; // Points associés à chaque utilisateur
 }
 
-// État initial
+export interface State {
+  points: UserPoints; // Dictionnaire des points par utilisateur
+}
+
 export const initialState: State = {
-  points: 0,  // L'utilisateur commence avec 0 points
+  points: {}, // Aucun utilisateur n'a de points initialement
 };
 
-// Création du reducer
 export const pointsReducer = createReducer(
   initialState,
-  // Action pour mettre à jour les points
-  on(updatePoints, (state, { points }) => ({ ...state, points }))
-);
+  on(updatePoints, (state, { userId, points }) => {
+    const currentPoints = state.points[userId] || 0;  // Récupère les points actuels de l'utilisateur (0 si inexistant)
+    const updatedPoints = {
+      ...state.points,
+      [userId]: currentPoints + points  // Ajoute les nouveaux points aux points existants
+    };
 
-// Vous pouvez également ajouter des actions de réinitialisation ou autres si nécessaire
+    // Retourne l'état mis à jour avec les points additionnés
+    return {
+      ...state,
+      points: updatedPoints
+    };
+  })
+);
