@@ -1,16 +1,88 @@
 <app-navbar></app-navbar>
-<h1>Profil utilisateur</h1>
 
-<div *ngIf="user">
-  <p><strong>Nom :</strong> {{ user.firstName }} {{ user.lastName }}</p>
-  <p><strong>Email :</strong> {{ user.email }}</p>
-  <p><strong>Adresse :</strong> {{ user.address }}</p>
-  <p><strong>Téléphone :</strong> {{ user.phoneNumber }}</p>
-  <p><strong>Date de naissance :</strong> {{ user.dateOfBirth }}</p>
-  <p><strong>Rôle :</strong> {{ user.role }}</p>
 
-  <button (click)="deleteUser()">Supprimer mon compte</button>
-  <button routerLink="/profile/edit">Modifier mon profil</button>
+<div class="max-w-2xl mx-auto mt-28"  *ngIf="user">
+
+
+  <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transition-colors duration-200">
+    <div class="relative h-48">
+      <img
+        src="https://imgs.search.brave.com/Ro1L38POaaWPXIdF1AdwyxgLyxA87QZ2wPoxHkc40AU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/YmFubmVyd29ybGQu/Y28udWsvd3AtY29u/dGVudC91cGxvYWRz/L3JlY3ljYWJsZS1Q/VkMtYmFubmVycy5q/cGc"
+        alt="Cover"
+        class="w-full h-full object-cover">
+      <div class="absolute -bottom-12 left-6">
+        <img
+          src="https://imgs.search.brave.com/4PXFELId6-8-J6qIbbTvX0AG98Hw7vM0Qqz4bgkCpyk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJzLmNvbS9p/bWFnZXMvaGQvY29v/bC1wcm9maWxlLXBp/Y3R1cmVzLWZhY2Vs/ZXNzLXdoaXRlLW1h/bi1sbmU5em1ocWxj/aGxjcGM3LmpwZw"
+          alt="Profile"
+          class="w-24 h-24 rounded-xl object-cover border-4 border-white dark:border-gray-800 shadow-lg">
+      </div>
+    </div>
+
+    <div class="pt-16 px-6 pb-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{{ user.firstName }} {{ user.lastName }}</h1>
+          <p class="text-purple-600 dark:text-purple-400">{{ user.email }}</p>
+        </div>
+        <a
+          routerLink="/profile/edit"
+          class="inline-flex items-center px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors duration-200 text-sm font-medium"
+        >
+          Edit
+          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+          </svg>
+        </a>
+        <button (click)="deleteUser()"
+                class="inline-flex items-center px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors duration-200 text-sm font-medium"
+        >
+          Delete
+          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="mt-6">
+        <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Role</h2>
+        <div class="flex flex-wrap gap-2">
+          <span
+            class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-300 rounded-lg text-sm font-medium">{{ user.role }}</span>
+        </div>
+      </div>
+
+      <div class="mt-6">
+        <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Address</h2>
+        <div class="flex flex-wrap gap-2">
+          <span
+            class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-300 rounded-lg text-sm font-medium">{{ user.address }}</span>
+        </div>
+      </div>
+
+      <div class="mt-6">
+        <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Phone Number</h2>
+        <div class="flex flex-wrap gap-2">
+          <span
+            class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-600
+            dark:text-purple-300 rounded-lg text-sm font-medium">{{ user.phoneNumber }}</span>
+        </div>
+      </div>
+
+
+      <div class="mt-6">
+        <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Date of Birth</h2>
+        <a
+          href="mailto:abhirajk@example.com"
+          class="inline-flex items-center text-purple-600 dark:text-purple-400 hover:underline"
+        >
+           <span
+             class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-600
+            dark:text-purple-300 rounded-lg text-sm font-medium">{{ user.dateOfBirth }}</span>
+
+        </a>
+      </div>
+    </div>
+  </div>
 </div>
-
-<p *ngIf="!user">Chargement des informations...</p>
