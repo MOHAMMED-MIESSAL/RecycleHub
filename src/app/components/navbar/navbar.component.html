@@ -1,30 +1,61 @@
-<div style="display: flex;justify-content: space-evenly; margin-bottom: 15px">
-
-  <button *ngIf="isLoggedIn">
-    <a routerLink="/request/add"> Add Request </a>
-  </button>
-
-  <button *ngIf="isLoggedIn">
-    <a routerLink="/request/my-request"> List Request </a>
-  </button>
-
-  <button *ngIf="!isLoggedIn">
-    <a routerLink="/register">Register</a>
-  </button>
-
-  <button *ngIf="!isLoggedIn">
-    <a routerLink="/login">Login</a>
-  </button>
-
-  <button *ngIf="isLoggedIn">
-    <a routerLink="/profile">Profile</a>
-  </button>
-
-  <button *ngIf="isLoggedIn">
-    <a routerLink="/collection-process">Demands</a>
-  </button>
-
-
-  <button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
-</div>
-
+<header
+  class="fixed inset-x-0 top-0 z-30 mx-auto w-full max-w-screen-md border border-gray-100 bg-white/80 py-3 shadow backdrop-blur-lg md:top-6 md:rounded-3xl lg:max-w-screen-lg">
+  <div class="px-4">
+    <div class="flex items-center justify-between">
+      <div class="flex shrink-0">
+        <a aria-current="page" class="flex items-center" href="/">
+          <svg class="h-7 w-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+            <g data-name="21-recycle">
+              <path
+                d="M16.06 43 9 55 1 42v-2s4.67-8.45 5-9l-4-2 16-2 5 13-4-2zM51 7l-4 15-16-2 4.43-2.88-3.35-5.17L25 1h15.82a1.986 1.986 0 0 1 1.75 1.03l4.27 7.68z"
+                style="fill:#79e78e"/>
+              <path d="m63 43-6.45 12.89A2 2 0 0 1 54.76 57H45v6L35 50l10-13v6h18z" style="fill:#85ee89"/>
+              <path
+                d="M31 43v14H12.24A3.613 3.613 0 0 1 9 55l7.06-12zM25 1l7.08 10.95L32 12l-8 15-11-8 7.66-15.32A4.853 4.853 0 0 1 25 1zM63 41.99V43H51l-8-15 11-5 8.07 15.24a8.039 8.039 0 0 1 .93 3.75z"
+                style="fill:#37cdc2"/>
+              <path
+                d="M56.472 40a4 4 0 0 1-3.578-2.211l-5.82-11.641L43 28l8 15h12v-1.01a8 8 0 0 0-.255-1.99zM17.369 54a2 2 0 0 1-1.756-2.958L20 43h-3.94L9 55a3.613 3.613 0 0 0 3.24 2H31v-3zM25 1a4.855 4.855 0 0 0-3.589 1.587L27.3 11a2 2 0 0 1 .127 2.088L21.118 24.9 24 27l8-15 .08-.05z"
+                style="fill:#01a2b0"/>
+              <path
+                d="M60.5 43 56 52H44v3l-6.836-7.813L35 50l10 13v-6h9.76a2 2 0 0 0 1.79-1.11L63 43zM9 30l9.625-1.375L18 27 2 29l4 2c-.33.55-5 9-5 9v2l1.432 2.328L11 31zM37 19l3-2L29.647 1H25l7.08 10.95 3.35 5.17L31 20l16 2 .429-1.609L37 19z"
+                style="fill:#4edfa6"/>
+            </g>
+          </svg>
+          <p class="sr-only">Website Title</p>
+        </a>
+      </div>
+      <div class="hidden md:flex md:items-center md:justify-center md:gap-5">
+        <a aria-current="page"
+           class="inline-block rounded-lg px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
+           *ngIf="isLoggedIn" routerLink="/home">Home</a>
+        <a aria-current="page"
+           class="inline-block rounded-lg px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
+           *ngIf="isLoggedIn && isParticular" routerLink="/request/add">Add Request</a>
+        <a
+          class="inline-block rounded-lg px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
+          *ngIf="isLoggedIn && isParticular" routerLink="/request/my-request">List Request</a>
+        <a
+          class="inline-block rounded-lg px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
+          *ngIf="isLoggedIn && isParticular" routerLink="/convert-points">Vouchers</a>
+        <a
+          class="inline-block rounded-lg px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
+          *ngIf="isLoggedIn" routerLink="/profile">Profile</a>
+        <a
+          class="inline-block rounded-lg px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
+          *ngIf="isLoggedIn && isCollector" routerLink="/collection-process">Demands</a>
+        <a
+          class="inline-block rounded-lg px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
+          *ngIf="isLoggedIn && isCollector" routerLink="/collection-process/reserved-requests">Reserved
+          Demands</a>
+      </div>
+      <div class="flex items-center justify-end gap-3">
+        <a
+          class="inline-flex items-center justify-center rounded-xl
+           bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm
+           transition-all duration-150 hover:bg-blue-500 focus-visible:outline
+           focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+          *ngIf="isLoggedIn" (click)="logout()">Logout</a>
+      </div>
+    </div>
+  </div>
+</header>

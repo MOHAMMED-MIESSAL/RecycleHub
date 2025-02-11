@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
-import { Router, RouterLink } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from '../../services/auth.service';
+import {Router, RouterLink} from '@angular/router';
 import {NgIf} from "@angular/common";
 
 @Component({
@@ -12,11 +12,16 @@ import {NgIf} from "@angular/common";
 })
 export class NavbarComponent implements OnInit {
   isLoggedIn = false;
+  isParticular = false;
+  isCollector = false;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {
+  }
 
   ngOnInit() {
     this.checkLoginStatus();
+    this.isParticular = this.authService.checkUserRole();
+    this.isCollector = this.authService.checkCollectorRole();
   }
 
   checkLoginStatus() {
@@ -25,8 +30,5 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     this.authService.logout();
-    localStorage.removeItem('loggedInUser');
-    this.isLoggedIn = false;
-    this.router.navigate(['/login']);
   }
 }

@@ -23,35 +23,47 @@
       "role": "collecteur"
     },
     {
-      "id": "1738944636357",
+      "id": "1739153482384",
       "email": "mohammedmiessal@gmail.com",
       "password": "mohammedmiessal@gmail.com",
       "firstName": "Mohammed",
       "lastName": "Miessal",
-      "address": "Casa",
-      "phoneNumber": "+1 (703) 945-9843",
-      "dateOfBirth": "2021-03-27",
+      "address": "Casablanca",
+      "phoneNumber": "+1 (757) 368-4886",
+      "dateOfBirth": "2025-02-05",
       "role": "particulier"
     }
   ],
   "requests": [
     {
-      "id": "1739128446812",
+      "id": "1739264784979",
       "wasteDetails": [
         {
-          "type": "Verre",
-          "weight": 6500
-        },
-        {
-          "type": "Papier",
-          "weight": 900
+          "type": "Plastique",
+          "weight": 1000
         }
       ],
       "address": "Casa",
-      "date": "2025-02-14",
-      "timeSlot": "12h00 - 15h00",
-      "notes": "ihe",
-      "userId": "1738944636357",
+      "date": "2025-02-11",
+      "timeSlot": "09h00 - 12h00",
+      "notes": "No notes",
+      "userId": "1739153482384",
+      "status": "validée",
+      "collectorId": "1738942328687"
+    },
+    {
+      "id": "1739268752620",
+      "wasteDetails": [
+        {
+          "type": "Plastique",
+          "weight": 1770
+        }
+      ],
+      "address": "Casa",
+      "date": "2025-02-12",
+      "timeSlot": "09h00 - 12h00",
+      "notes": "",
+      "userId": "1739153482384",
       "status": "validée",
       "collectorId": "1738942328687"
     }

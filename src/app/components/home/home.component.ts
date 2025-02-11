@@ -1,35 +1,35 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { PointsService } from '../../services/points.service';
-import { NavbarComponent } from '../navbar/navbar.component';
-import { AsyncPipe } from '@angular/common';
+import {Component, OnInit} from '@angular/core';
+import {Observable} from 'rxjs';
+import {PointsService} from '../../services/points.service';
+import {NavbarComponent} from '../navbar/navbar.component';
+import {AsyncPipe, NgIf} from '@angular/common';
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
     AsyncPipe,
-    NavbarComponent
+    NavbarComponent,
+    NgIf
   ],
-  template: `
-    <app-navbar></app-navbar>
-    <h1>Home</h1>
-    <p>Points: {{ points$ | async }}</p>
-  `,
+  templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
   points$!: Observable<number>;
+  isParticular = false;
 
-  constructor(private pointsService: PointsService) {}
+  constructor(private pointsService: PointsService, private authService: AuthService) {
+  }
 
   ngOnInit() {
     const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || '{}');
     const userId = loggedInUser?.id;
-
-    if (userId) {
-      this.pointsService.getUserPoints(userId); // Get points from localStorage
-      this.points$ = this.pointsService.getUserPoints(userId);
-    }
+    this.isParticular = this.authService.checkUserRole();
+    this.pointsService.getUserPoints(userId);
+    this.points$ = this.pointsService.getUserPoints(userId);
   }
+
+
 }

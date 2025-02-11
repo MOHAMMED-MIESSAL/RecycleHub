@@ -5,9 +5,10 @@ import {CollectionService} from "../../../services/collection.service";
 import {Store} from '@ngrx/store';
 import {updatePoints} from '../../../store/points/points.actions';
 import {PointsService} from "../../../services/points.service";
-import {AsyncPipe} from "@angular/common";
+import {AsyncPipe, DatePipe} from "@angular/common";
 import {NgForOf} from "@angular/common";
 import {NgIf} from "@angular/common";
+import {NavbarComponent} from "../../navbar/navbar.component";
 
 
 @Component({
@@ -16,7 +17,9 @@ import {NgIf} from "@angular/common";
     imports: [
         AsyncPipe,
         NgForOf,
-        NgIf
+        NgIf,
+        DatePipe,
+        NavbarComponent
     ],
     templateUrl: './reserved-requests.component.html',
     styleUrl: './reserved-requests.component.css'

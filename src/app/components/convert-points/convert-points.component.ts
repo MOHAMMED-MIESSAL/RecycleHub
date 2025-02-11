@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {NgForOf, NgIf} from '@angular/common';
+import {AsyncPipe, NgClass, NgForOf, NgIf} from '@angular/common';
 import {Observable, of} from 'rxjs';
 import {Router} from '@angular/router';
 import {updatePoints, getAllPoints} from '../../store/points/points.actions';
@@ -9,32 +9,8 @@ import {NavbarComponent} from "../navbar/navbar.component";
 @Component({
   selector: 'app-convert-points',
   standalone: true,
-  imports: [NavbarComponent, NgIf, NgForOf],
-  template: `
-    <app-navbar></app-navbar>
-    <h1>Convert Points to Voucher</h1>
-    <p *ngIf="!hasPoints && vouchers.length === 0">No points available and no vouchers available </p>
-    <p *ngIf="hasPoints">Points: {{ currentPoints }}</p>
-
-    <button *ngIf="hasPoints" (click)="convertPoints(100)" [disabled]="currentPoints < 100">
-      100 points = 50 Dh Voucher
-    </button>
-    <button *ngIf="hasPoints" (click)="convertPoints(200)" [disabled]="currentPoints < 200">
-      200 points = 120 Dh Voucher
-    </button>
-    <button *ngIf="hasPoints" (click)="convertPoints(500)" [disabled]="currentPoints < 500">
-      500 points = 350 Dh Voucher
-    </button>
-
-    <div *ngIf="vouchers.length > 0">
-      <h3>Bons d'achat :</h3>
-      <ul>
-        <li *ngFor="let voucher of vouchers">
-          {{ voucher.type }} - {{ voucher.value }} Dh
-        </li>
-      </ul>
-    </div>
-  `,
+  imports: [NavbarComponent, NgIf, NgForOf, AsyncPipe, NgClass],
+  templateUrl: `./convert-points.component.html`,
 })
 export class ConvertPointsComponent implements OnInit {
   points$: Observable<number> = of(0);
