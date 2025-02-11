@@ -1,6 +1,6 @@
 import {Observable} from 'rxjs';
 import {CollectionService} from '../../../services/collection.service';
-import {AsyncPipe, NgFor, NgIf} from '@angular/common';
+import {AsyncPipe, DatePipe, NgFor, NgIf} from '@angular/common';
 import {Component, OnInit} from '@angular/core';
 import {CollectionRequest} from '../../../models/collection-request.model';
 import {NavbarComponent} from "../../navbar/navbar.component";
@@ -9,13 +9,14 @@ import {RouterLink} from "@angular/router";
 @Component({
   selector: 'app-requests-list',
   standalone: true,
-  imports: [
-    AsyncPipe,
-    NgFor,
-    NgIf,
-    NavbarComponent,
-    RouterLink
-  ],
+    imports: [
+        AsyncPipe,
+        NgFor,
+        NgIf,
+        NavbarComponent,
+        RouterLink,
+        DatePipe
+    ],
   templateUrl: './requests-list.component.html',
   styleUrl: './requests-list.component.css'
 })

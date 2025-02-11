@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, FormArray, Validators, ReactiveFormsModule} from
 import {CollectionService} from '../../../services/collection.service';
 import {WasteDetail, CollectionRequest} from '../../../models/collection-request.model';
 import {CommonModule} from '@angular/common';
+import {NavbarComponent} from "../../navbar/navbar.component";
 
 @Component({
   standalone: true,
@@ -11,7 +12,8 @@ import {CommonModule} from '@angular/common';
   templateUrl: './edit-request.component.html',
   imports: [
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    NavbarComponent
   ],
   styleUrls: ['./edit-request.component.css']
 })

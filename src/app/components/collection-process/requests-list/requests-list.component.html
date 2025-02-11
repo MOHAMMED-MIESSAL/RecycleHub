@@ -1,18 +1,69 @@
 <app-navbar></app-navbar>
-<h2>Demandes disponibles</h2>
-<button>
-  <a routerLink="/collection-process/reserved-requests">Mes demandes réservées</a>
-  </button>
-<ul>
-  <li *ngFor="let request of availableRequests$ | async">
-    <strong>Adresse :</strong> {{ request.address }} <br>
-    <strong>Poids total :</strong> {{ getTotalWeight(request) }} g <br>
-    <strong>Statut :</strong> {{ request.status }} <br>
 
-    <button *ngIf="request.status === 'en attente'" (click)="reserveRequest(request.id)">
-      Réserver
-    </button>
-  </li>
-</ul>
+<section class="bg-white dark:bg-gray-900 mt-24 ">
+  <!-- Title Section -->
+  <div class="text-center py-10">
+    <h1 class="text-4xl font-bebas-neue uppercase font-extrabold  font-bold text-black dark:text-white mb-4">Available Demands :</h1>
+  </div>
+  <!-- Content Section -->
+  <div class="px-8 py-10 mx-auto lg:max-w-screen-xl sm:max-w-xl md:max-w-full sm:px-12 md:px-16 lg:py-20 sm:py-16">
+    <div class="grid gap-x-8 gap-y-12 sm:gap-y-16 md:grid-cols-2 lg:grid-cols-3">
+      <div class="relative" *ngFor="let request of availableRequests$ | async">
+
+        <button class="block overflow-hidden group rounded-xl shadow-lg">
+          <img
+            src="https://imgs.search.brave.com/XhdpvSeqlq_D1yfutWRambWwVa8p4Cu62LwS3IFNq5w/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9idXJz/dC5zaG9waWZ5Y2Ru/LmNvbS9waG90b3Mv/cmVjeWNsaW5nLWJp/bi5qcGc_d2lkdGg9/MTAwMCZmb3JtYXQ9/cGpwZyZleGlmPTAm/aXB0Yz0w"
+            class="object-cover w-full h-56 transition-all duration-300 ease-out sm:h-64 group-hover:scale-110"
+            alt="Adventure">
+        </button>
+        <div class="relative mt-5">
+          <p class="uppercase font-semibold text-xs mb-2.5 text-purple-600">{{ request.date | date: 'dd/MM/yyyy' }}
+            - {{ request.timeSlot }}</p>
+          <div class="flex justify-between ">
+            <h2
+              class="text-2xl font-bold leading-5 text-black dark:text-white transition-colors duration-200 hover:text-purple-700 dark:hover:text-purple-400">
+              Address :
+            </h2>
+            <p class="mb-4 text-gray-700 dark:text-gray-300">
+              {{ request.address }}
+            </p>
+          </div>
+
+          <div class="flex justify-between ">
+            <h3
+              class="text-xl font-bold leading-5 text-black dark:text-white transition-colors duration-200 hover:text-purple-700 dark:hover:text-purple-400">
+              Waste :
+            </h3>
+            <ul class="mb-4">
+              <li *ngFor="let waste of request.wasteDetails">
+                <strong> {{ waste.type }} : </strong>  {{ waste.weight }} g
+              </li>
+            </ul>
+          </div>
+
+          <div class="flex justify-between ">
+            <h3
+              class="text-xl font-bold leading-5 text-black dark:text-white transition-colors duration-200 hover:text-purple-700 dark:hover:text-purple-400">
+              Notes :
+            </h3>
+            <p class="mb-4 text-gray-700 dark:text-gray-300">
+              {{ request.notes }}
+            </p>
+          </div>
+
+          <div class="flex justify-between gap-1 mt-2">
+            <button *ngIf="request.status === 'en attente'" (click)="reserveRequest(request.id)"
+                    class="hover:shadow-form w-full rounded-md bg-green-600 py-3 px-8 text-center text-base font-semibold text-white outline-none">
+              Reserve
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 
 

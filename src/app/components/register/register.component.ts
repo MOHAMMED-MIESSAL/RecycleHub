@@ -2,7 +2,7 @@
   import {FormsModule} from '@angular/forms';
   import {User} from '../../models/user.model';
   import {UserService} from '../../services/user.service';
-  import { Router } from '@angular/router';
+  import {Router, RouterLink} from '@angular/router';
   import {NavbarComponent} from "../navbar/navbar.component";
 
   @Component({
@@ -11,6 +11,7 @@
     imports: [
       FormsModule,
       NavbarComponent,
+      RouterLink,
     ],
     templateUrl: './register.component.html',
     styleUrl: './register.component.css'

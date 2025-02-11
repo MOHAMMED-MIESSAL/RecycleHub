@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {CollectionRequest} from '../models/collection-request.model';
 import {map} from 'rxjs/operators';
+import { Store } from '@ngrx/store';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class CollectionService {
 
   private apiUrl = 'http://localhost:3000/requests';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private store: Store) {
   }
 
   addRequest(request: CollectionRequest): Observable<CollectionRequest> {

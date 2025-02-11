@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {UserService} from '../../../services/user.service';
-import {Router} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {NavbarComponent} from "../../navbar/navbar.component";
 
 
@@ -10,7 +10,9 @@ import {NavbarComponent} from "../../navbar/navbar.component";
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    NavbarComponent
+    NavbarComponent,
+    FormsModule,
+    RouterLink
   ],
   templateUrl: './update-profile.component.html',
   styleUrls: ['./update-profile.component.css']
