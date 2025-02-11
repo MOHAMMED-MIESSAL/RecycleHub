@@ -35,37 +35,6 @@
     }
   ],
   "requests": [
-    {
-      "id": "1739264784979",
-      "wasteDetails": [
-        {
-          "type": "Plastique",
-          "weight": 1000
-        }
-      ],
-      "address": "Casa",
-      "date": "2025-02-11",
-      "timeSlot": "09h00 - 12h00",
-      "notes": "No notes",
-      "userId": "1739153482384",
-      "status": "validée",
-      "collectorId": "1738942328687"
-    },
-    {
-      "id": "1739268752620",
-      "wasteDetails": [
-        {
-          "type": "Plastique",
-          "weight": 1770
-        }
-      ],
-      "address": "Casa",
-      "date": "2025-02-12",
-      "timeSlot": "09h00 - 12h00",
-      "notes": "",
-      "userId": "1739153482384",
-      "status": "validée",
-      "collectorId": "1738942328687"
-    }
+
   ]
 }
